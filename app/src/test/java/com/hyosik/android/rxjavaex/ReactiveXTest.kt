@@ -1,7 +1,11 @@
 package com.hyosik.android.rxjavaex
 
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.junit.Test
+import java.lang.Exception
+import java.util.concurrent.TimeUnit
 
 class ReactiveXTest {
 
@@ -36,6 +40,35 @@ class ReactiveXTest {
         items.onNext(7)
         items.onNext(8)
 
+    }
+
+    @Test
+    fun `Single testing`() {
+
+        Single.just("Hello World")
+            .subscribe { item ->  println(item) }
+
+        Single.create<String> { emitter -> emitter.onSuccess("Create") }
+            .subscribe { item -> println(item) }
+
+    }
+
+    @Test
+    fun `Disposable testing`() {
+        val source = Observable.interval(1000 , TimeUnit.MILLISECONDS)
+//        val source = Observable.just("A","B" , "C")
+
+        //1초에 한 번씩 아이템 발행
+        val disposable = source.subscribe{println(it)}
+
+        Thread {
+            try {
+                Thread.sleep(3500)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            disposable.dispose()
+        }.start()
     }
 
 }
