@@ -113,6 +113,4 @@ class RxJavaDoonOperator {
         // doFinally는 정상종료 말고도 스트림이 폐기 될 때 호출이 된다.
         // Observable을 구독한 뒤 종료되는 어떠한 상황에서도 후속 조치를 해야 하는 상황에서 사용할 수 있다.
     }
-
-
 }
