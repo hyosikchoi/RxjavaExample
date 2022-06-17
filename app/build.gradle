@@ -3,6 +3,7 @@ import com.hyosik.android.buildsrc.AndroidX
 import com.hyosik.android.buildsrc.Google
 import com.hyosik.android.buildsrc.Libraries
 import com.hyosik.android.buildsrc.UnitTest
+import com.hyosik.android.buildsrc.Kotlin
 
 plugins {
     id 'com.android.application'
@@ -27,5 +28,9 @@ dependencies {
     // RxJava
     implementation Libraries.RXJAVA
 
+    //Coroutine
+    implementation(Kotlin.COROUTINES_CORE)
+    implementation(Kotlin.COROUTINES_ANDROID)
+    testImplementation(UnitTest.COROUTINE_TEST)
 
 }

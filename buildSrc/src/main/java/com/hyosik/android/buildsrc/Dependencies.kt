@@ -3,6 +3,7 @@ package com.hyosik.android.buildsrc
 object Versions {
     const val KOTLIN_VERSION = "1.5.20"
     const val KOTLINX_COROUTINES = "1.5.0"
+    const val KOTLINX_COROUTINES_TEST = "1.6.2"
     const val BUILD_GRADLE = "7.0.2"
     const val COMPILE_SDK_VERSION = 31
     const val BUILD_TOOLS_VERSION = "30.0.3"
@@ -65,6 +66,7 @@ object UnitTest {
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
     const val MOCK_WEB_SERVER = "com.squareup.okhttp3:mockwebserver:${Versions.OKHTTP}"
     const val TRUTH = "com.google.truth:truth:${Versions.TRUTH}"
+    const val COROUTINE_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.KOTLINX_COROUTINES_TEST}"
 }
 
 object AndroidTest {
