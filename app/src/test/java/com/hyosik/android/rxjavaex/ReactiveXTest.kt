@@ -2,6 +2,7 @@ package com.hyosik.android.rxjavaex
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.junit.Test
 import java.lang.Exception
@@ -71,6 +72,25 @@ class ReactiveXTest {
         }.start()
     }
 
+    @Test
+    fun `Composite Disposable testing`() {
+
+         val source = Observable.just("A","B","C")
+
+        val compositeDisposable = CompositeDisposable()
+
+         val disposable = source.subscribe { response ->
+             println("response : $response")
+         }
+
+         println("폐기 됬나? ${compositeDisposable.isDisposed}")
+
+         compositeDisposable.add(disposable)
+         compositeDisposable.dispose()
+         println("dispose 호출")
+         println("폐기 됬나? ${compositeDisposable.isDisposed}")
+
+    }
 
 
 }
