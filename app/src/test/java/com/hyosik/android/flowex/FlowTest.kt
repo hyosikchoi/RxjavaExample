@@ -1,10 +1,8 @@
 package com.hyosik.android.flowex
 
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.test.TestCoroutineScheduler
 import kotlinx.coroutines.test.runTest
@@ -24,6 +22,26 @@ class FlowTest {
             emit(4)
         }.map { i -> i * 2 }
             .collect { value : Int -> println(value) }
+    }
+
+    @Test
+    fun `flow flatMapMerge 테스트`() = runTest {
+        val printIntFlow = flow<Int>{
+            for (i in 0 until 5) {
+                emit(i)
+            }
+        }
+
+        printIntFlow.flatMapMerge { intvalue ->
+            flow {
+                emit(intvalue)
+                delay(1000)
+                emit(intvalue + 0.5)
+            }
+        }.collect {
+            println(it)
+        }
+
     }
 
 }
